@@ -1,0 +1,202 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Warung</title><meta name="theme-color" content="#c2410c">
+<style>
+:root{--bg:#faf7f2;--cd:#fff;--tx:#2a2420;--mu:#7a6f66;--ac:#c2410c;--ln:#e8e0d5;--ok:#15803d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--cd:#292524;--tx:#f5efe8;--mu:#a8a29e;--ac:#fb923c;--ln:#3f3a36;--ok:#4ade80}}
+:root[data-theme="dark"]{--bg:#1c1917;--cd:#292524;--tx:#f5efe8;--mu:#a8a29e;--ac:#fb923c;--ln:#3f3a36;--ok:#4ade80}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{max-width:640px;margin:0 auto;padding:12px 12px 90px}
+h3{margin:16px 0 6px;font-size:14px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}
+.hd{display:flex;align-items:center;gap:8px;margin-bottom:6px}.hd .g{flex:1}
+.lg{width:44px;height:44px;border-radius:12px;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden}.lg img{width:100%;height:100%;object-fit:cover}
+.card,.row{background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:10px 12px;margin:8px 0}
+.row{display:flex;align-items:center;gap:10px}.row.off{opacity:.5}.em{font-size:28px}.g{flex:1;min-width:0}.g small,small,.mu{color:var(--mu)}.g small{display:block}
+button,select,input{font:inherit;color:var(--tx)}
+button{border:1px solid var(--ln);background:var(--cd);border-radius:10px;padding:8px 12px;cursor:pointer}
+button.pri{background:var(--ac);color:#fff;border-color:var(--ac);width:100%;margin-top:8px;font-weight:600}
+input,select{width:100%;padding:9px 10px;border:1px solid var(--ln);border-radius:10px;background:var(--cd);margin:3px 0}
+.st{display:flex;align-items:center;gap:8px}.st button{width:34px;padding:6px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}.bar>div{max-width:640px;margin:0 auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--ln);margin-left:auto}.chip.dimasak{background:#fed7aa;color:#7c2d12}.chip.selesai{background:#bbf7d0;color:#14532d}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:8px 0}.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.steps{display:flex;margin:14px 0}.steps div{flex:1;text-align:center;font-size:13px;color:var(--mu)}.steps div.on{color:var(--ok);font-weight:700}.steps i{display:block;font-size:26px;font-style:normal}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;border-bottom:1px solid var(--ln);text-align:left}.wrap{overflow-x:auto}
+#rcw{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:9;overflow:auto;padding:12px}
+#rcw[hidden]{display:none}
+.chips{display:flex;gap:8px;overflow-x:auto;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:2}
+.chips a.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.chips a{white-space:nowrap;padding:6px 14px;border-radius:99px;background:var(--cd);border:1px solid var(--ln);color:var(--tx);text-decoration:none;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mc{background:var(--cd);border:1px solid var(--ln);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}.mc.off{opacity:.5}
+.mc img,.mc .ph{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.mc .ph{display:flex;align-items:center;justify-content:center;font-size:52px;background:var(--ln)}
+.mb{padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px;flex:1}.mb b{font-size:15px;line-height:1.2}.pr{color:var(--ac);font-weight:700}
+.add{margin-top:auto;width:100%;background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600;padding:7px}
+.mb .st{margin-top:auto;justify-content:space-between}.mb .st button{width:38px}.hb{margin-top:auto;color:var(--mu);font-weight:600}
+.sh{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:8;display:flex;align-items:flex-end}.sp{background:var(--bg);width:100%;max-width:640px;margin:0 auto;border-radius:18px 18px 0 0;padding:16px 14px calc(16px + env(safe-area-inset-bottom,0px));max-height:88%;overflow:auto}
+.tag{display:inline-block;padding:4px 12px;border-radius:99px;background:var(--ac);color:#fff;font-weight:600;font-size:13px}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+body.pg #app{max-width:1000px}
+.pic{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none}
+.rcp{background:#fff;color:#000;width:280px;padding:14px;font:12px/1.4 ui-monospace,monospace}.rcp .l{display:flex;justify-content:space-between}.rcp hr{border:0;border-top:1px dashed #000}
+@media print{body.rc #app,.noprint{display:none!important}#rcw{position:static;background:none;padding:0}}
+</style></head><body><div id="app">Memuat…</div><div id="rcw" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const INIT={},APP_URL='';
+const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),R=n=>'Rp'+Number(n||0).toLocaleString('id-ID'),today=t=>t&&new Date(t).toDateString()===new Date().toDateString();
+const S={sel:{},joins:[],set:{},menu:[],orders:[],staff:[],cart:{},nm:'',tb:'',me:null,tab:'dapur',per:'hari',pay:null,rc:null,qt:'',url:APP_URL||location.href.split('#')[0].split('?')[0],ready:false,err:false};
+const mem0={},store={g(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem0[k]??null},s(k,v){mem0[k]=v;try{localStorage.setItem(k,v)}catch(e){}}};
+try{S.me=JSON.parse(store.g('me')||'null')}catch(e){}
+/* ===== Koneksi ke Google Apps Script (database = Google Spreadsheet) ===== */
+const API='https://script.google.com/macros/s/AKfycbziOsbSo9RIIP1-HzalNtqZcCT4SQp_IbOrUPLAdpCmIxAilmKnVggc2afaONV2J9Wo/exec';
+const GS=typeof google!=='undefined'&&google.script&&google.script.run;
+async function rpc(a){const q={...a,tok:store.g('tok')||''};let j;
+ if(GS)j=await new Promise((ok,no)=>google.script.run.withSuccessHandler(ok).withFailureHandler(e=>no(new Error(e&&e.message||e))).api(JSON.stringify(q)));
+ else{const r=await fetch(API,{method:'POST',body:JSON.stringify(q),redirect:'follow'});j=await r.json()}
+ if(j.err){if(j.err==='auth'){store.s('tok','');store.s('me','');S.me=null}throw new Error(j.err==='auth'?'Sesi habis atau tidak punya izin. Masuk staf lagi.':j.err)}return j}
+function makeDb(){
+ if(!GS&&(!API||API.startsWith('PASTE')))return null;
+ const vers={},data={},subs={},emit=c=>(subs[c]||[]).forEach(f=>f());
+ async function sync(){const j=await rpc({a:'sync',vers});for(const c in j.cols){vers[c]=j.cols[c].v;if(j.cols[c].docs){data[c]=j.cols[c].docs;emit(c)}}}
+ const w=async(a,c,id,d)=>{const j=await rpc({a,c,id,d});await sync();return j};
+ const snap=c=>({docs:(data[c]||[]).map(d=>({id:d.id,data:()=>{const{id,...r}=d;return r}}))});
+ const loop=async()=>{if(!document.hidden){try{await sync()}catch(e){}}setTimeout(loop,/^#\/(staff|panggil)/.test(location.hash)||store.g('oid')?4000:12000)};
+ return{init:async()=>{await sync();setTimeout(loop,4000)},
+  collection:c=>({onSnapshot(cb){(subs[c]=subs[c]||[]).push(()=>cb(snap(c)));cb(snap(c))},add:d=>w('add',c,null,d)}),
+  doc:p=>{const[c,id]=p.split('/');return{onSnapshot(cb){const f=()=>{const d=(data[c]||[]).find(x=>x.id===id);cb({exists:!!d,data:()=>{if(!d)return{};const{id:_,...r}=d;return r}})};(subs[c]=subs[c]||[]).push(f);f()},update:d=>w('update',c,id,d),set:d=>w('set',c,id,d),delete:()=>w('delete',c,id)}}}}
+let db=null;
+const QS=new URLSearchParams(location.search),P=k=>INIT[k]??QS.get(k);
+if(P('staff'))location.hash='#/staff';else if(P('panggil'))location.hash='#/panggil';else if(P('ta'))location.hash='#/ta';else if(P('m'))location.hash='#/m/'+P('m');
+const m0=location.hash.match(/^#\/m\/(.+)/);if(m0)S.tb=decodeURIComponent(m0[1]);S.tp=/^#\/ta/.test(location.hash)?'ta':'dine';
+window.onerror=(m,u,l)=>{const a=document.getElementById('app');if(a)a.insertAdjacentHTML('afterbegin','<p style="color:#b91c1c">Error: '+m+' (baris '+l+')</p>')};
+window.onunhandledrejection=e=>{const r=e.reason||{};alert('Gagal: '+(r.code?r.code+' - ':'')+(r.message||r))};
+setTimeout(async()=>{try{db=makeDb();if(db)await db.init()}catch(e){db=null;S.why=String(e&&e.message||e)}
+if(!db){S.err=true;return render()}
+const sub=(c,k)=>db.collection(c).onSnapshot(sn=>{S[k]=sn.docs.map(d=>({id:d.id,...d.data()}));rr()});
+sub('menu','menu');sub('orders','orders');sub('staff','staff');sub('joins','joins');
+db.doc('settings/main').onSnapshot(d=>{S.set=d.exists?d.data():{};rr()});
+S.ready=true;render();setInterval(rr,20000)},0);
+function rr(){const a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))return;render()}
+const logo=l=>!l?'🍜':l.startsWith('data:')?`<img src="${l}" alt="">`:E(l);
+let tp=[];function lgTap(){const n=Date.now();tp=tp.filter(t=>n-t<2500);tp.push(n);if(tp.length>=5){tp=[];location.hash='#/staff'}}
+const head=()=>`<div class="hd"><div class="lg" onclick="lgTap()">${logo(S.set.logo)}</div><div class="g"><b style="font-size:18px">${E(S.set.name||'Warung Saya')}</b></div></div>`;
+function render(){
+ document.body.classList.toggle('rc',!!S.rc);document.title=S.set.name||'Warung';
+ const st=location.hash.startsWith('#/staff'),pg=location.hash.startsWith('#/panggil');document.body.classList.toggle('pg',pg);let b;
+ if(S.err)b='<p>Tidak bisa terhubung ke server (Apps Script). Periksa koneksi internet atau pengaturan alamat API di index.html.</p>'+(S.why?'<small>'+E(S.why)+'</small>':'');
+ else if(!S.ready)b='Memuat…';else b=st?staff():pg?panggil():cust();
+ const c0=$('.chips'),sl=c0?c0.scrollLeft:0;$('#app').innerHTML=head()+b;const c2=$('.chips');if(c2){c2.scrollLeft=sl;const k=c2.querySelector('.on');if(k){if(k.offsetLeft<c2.scrollLeft)c2.scrollLeft=k.offsetLeft-8;else if(k.offsetLeft+k.offsetWidth>c2.scrollLeft+c2.clientWidth)c2.scrollLeft=k.offsetLeft+k.offsetWidth-c2.clientWidth+8}}
+ if(S.ready){if(pg)ann();else if(!st)notify()}
+ const rw=$('#rcw');rw.hidden=!S.rc;rw.innerHTML=S.rc?receipt(S.rc):'';
+ const q=$('#qr');if(q&&typeof QRCode!=='undefined'){q.innerHTML='';new QRCode(q,{text:S.url+(S.qta?'?ta=1':'?m='+encodeURIComponent(S.qt)),width:200,height:200})}
+}
+window.onhashchange=render;
+/* ===== PEMBELI ===== */
+function cust(){
+ const my=S.orders.find(o=>o.id===store.g('oid'));if(my)return track(my);
+ if(!S.menu.length)return '<p class="mu">Menu belum tersedia.</p>';
+ const ta=S.tp==='ta',cats=[...new Set(S.menu.map(m=>m.cat||'Menu'))],n=Object.values(S.cart).reduce((a,b)=>a+b,0),t=S.menu.reduce((a,m)=>a+(S.cart[m.id]||0)*m.price,0);
+ let h=`<div style="margin:2px 0 4px"><span class="tag">${ta?'🛍 Take away':S.tb?'🍽 Meja '+E(S.tb):'Scan QR di meja'}</span></div><div class="chips"><a href="#" class="${S.cat?'':'on'}" onclick="selCat(-1);return false">Semua</a>${cats.map((c,i)=>`<a href="#" class="${S.cat===c?'on':''}" onclick="selCat(${i});return false">${E(c)}</a>`).join('')}</div>`;
+ (S.cat&&cats.includes(S.cat)?[S.cat]:cats).forEach(c=>{h+=`<h3>${E(c)}</h3><div class="grid">`+S.menu.filter(m=>(m.cat||'Menu')===c).map(m=>{const q=S.cart[m.id]||0;return `<div class="mc${m.off?' off':''}">${m.img?`<img src="${E(m.img)}" alt="">`:`<div class="ph">${E(m.emoji||'🍽️')}</div>`}<div class="mb"><b>${E(m.name)}</b><div class="pr">${R(m.price)}</div><small>⏱ ±${m.mins||10} mnt/porsi</small>${m.off?'<div class="hb">Habis</div>':q?`<div class="st"><button onclick="cq('${m.id}',-1)">−</button><b>${q}</b><button onclick="cq('${m.id}',1)">+</button></div>`:`<button class="add" onclick="cq('${m.id}',1)">+ Tambah</button>`}</div></div>`}).join('')+'</div>'});
+ const top=S.tb?`<div class="tabs" style="margin:8px 0"><button class="${ta?'':'on'}" onclick="S.tp='dine';render()">🍽 Makan di sini · Meja ${E(S.tb)}</button><button class="${ta?'on':''}" onclick="S.tp='ta';render()">🛍 Bawa pulang</button></div>`:'',
+ mid=(S.tb||ta)?`<input placeholder="Nama Anda (untuk dipanggil)" value="${E(S.nm)}" oninput="S.nm=this.value">`:'<p><b>Scan QR yang ada di meja Anda untuk memesan.</b></p>';
+ const sheet=S.co&&n?`<div class="sh" onclick="if(event.target===this){S.co=0;render()}"><div class="sp"><b style="font-size:17px">Pesanan Anda</b>${S.menu.filter(m=>S.cart[m.id]).map(m=>`<div class="row" style="margin:6px 0"><div class="g"><b>${E(m.name)}</b><small>${R(m.price)}</small></div><div class="st"><button onclick="cq('${m.id}',-1)">−</button><b>${S.cart[m.id]}</b><button onclick="cq('${m.id}',1)">+</button></div></div>`).join('')}${top}${mid}<p>Total <b>${R(t)}</b><br><small>Estimasi siap ±${Math.ceil(sched({id:'_',at:Date.now(),items:S.menu.filter(m=>S.cart[m.id]).map(m=>({mins:m.mins||10,qty:S.cart[m.id]}))})['_']||0)} menit (termasuk antrian dapur)</small><br><small>Bayar setelah memesan: transfer/QRIS atau tunai di kasir.</small></p><button class="pri" onclick="order()">Pesan & bayar · ${R(t)}</button></div></div>`:'';
+ const bar=n?`<div class="bar"><div><button class="pri" style="margin:0" onclick="S.co=1;render()">🛒 Lihat pesanan · ${n} item · ${R(t)}</button></div></div>`:'';
+ return h+bar+sheet}
+function selCat(i){S.cat=i<0?'':[...new Set(S.menu.map(m=>m.cat||'Menu'))][i];render();scrollTo(0,0)}
+function cq(id,d){S.cart[id]=Math.max(0,(S.cart[id]||0)+d);if(!Object.values(S.cart).some(x=>x))S.co=0;render()}
+async function order(){
+ const items=S.menu.filter(m=>S.cart[m.id]).map(m=>({id:m.id,name:m.name,price:+m.price,qty:S.cart[m.id],mins:+m.mins||10}));
+ const ta=S.tp==='ta',tb=ta?'':S.tb.trim();if(!ta&&!tb)return alert('Scan QR yang ada di meja Anda untuk memesan');if(!items.length)return alert('Pilih menu dulu');if(!S.nm.trim())return alert('Isi nama Anda');
+ try{const r=await db.collection('orders').add({no:String(Date.now()).slice(-4),name:S.nm.trim(),table:tb,type:ta?'ta':'dine',items,total:items.reduce((a,i)=>a+i.price*i.qty,0),est:items.reduce((a,i)=>a+i.mins*i.qty,0),status:'bayar',paid:false,add:S.prev||'',at:Date.now()});store.s('oid',r.id);S.cart={};S.prev='';S.co=0;render()}catch(e){alert('Gagal mengirim pesanan, coba lagi')}}
+function track(o){
+ const i={bayar:0,verif:0,cek:0,baru:1,dimasak:2,selesai:3,diantar:3}[o.status]??0,ah=S.orders.filter(x=>x.status==='baru'&&x.at<o.at).length;let f='';
+ if(o.status==='bayar'||o.status==='verif')f=(o.rej?'Pembayaran belum kami terima. ':'')+`Silakan bayar ${R(o.total)}: transfer/QRIS dari meja ini, atau tunai di kasir. Pesanan dibuat setelah pembayaran.`;if(o.status==='cek')f='Terima kasih! Kasir sedang memastikan pembayaran Anda…';
+ if(o.status==='baru')f=`Pembayaran diterima ✅ Antrian ke-${ah+1} di dapur. Estimasi siap ±${Math.ceil(sched()[o.id]||eta(o))} menit.`;
+ if(o.status==='dimasak'){const l=Math.ceil(sched()[o.id]??0);f=l>0?`Sedang dimasak, sisa ± ${l} menit.`:'Hampir selesai…'}
+ if(o.status==='selesai')f=`🔔 Pesanan siap! Silakan ambil di counter. ${o.type==='ta'?'Nama Anda':'Nama & nomor meja Anda'} akan dipanggil lewat suara.`;
+ if(o.status==='diantar')f='Pesanan sudah diambil. Selamat makan! 😋';
+ if(o.status==='batal')f='Pesanan dibatalkan. Silakan hubungi kasir.';
+ const lb=['📝 Dipesan','💳 Dibayar','🍳 Dimasak','🔔 Siap'];
+ return `<div class="card"><b>Pesanan #${o.no}</b>${o.add?' ➕ tambahan':''} · ${E(o.name)}${o.type==='ta'?' · 🛍 Take away':' · Meja '+E(o.table)}<div class="steps">${lb.map((s,k)=>`<div class="${k<=i?'on':''}"><i>${s.split(' ')[0]}</i>${s.split(' ')[1]}</div>`).join('')}</div><p><b>${f}</b></p>${o.items.map(x=>`<div>${x.qty}× ${E(x.name)}</div>`).join('')}<p>Total <b>${R(o.total)}</b> · ${o.paid?'<span style="color:var(--ok)">Sudah dibayar</span>':'Belum dibayar'}</p></div>${o.status==='bayar'||o.status==='verif'?payCard(o):''}<button class="pri" onclick="S.prev='${o.no}';store.s('oid','');render()">+ Tambah pesanan</button>`}
+/* ===== SUARA ===== */
+const sp={on:false,seen:{}};
+function say(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='id-ID';u.rate=.9;const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith('id'));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
+const callTxt=o=>`Pesanan ${o.add?'tambahan ':''}atas nama ${o.name}, ${o.type==='ta'?'bawa pulang':'meja '+o.table}, sudah siap. Silakan diambil di counter.`;
+function ann(){if(!sp.on)return;S.orders.filter(o=>o.status==='selesai').sort((a,b)=>a.ce-b.ce).forEach(o=>{const k=o.ce+':'+(o.calls||0);if(sp.seen[o.id]!==k){sp.seen[o.id]=k;say(callTxt(o));say(callTxt(o))}})}
+function spOn(){sp.on=true;S.orders.filter(o=>o.status==='selesai').forEach(o=>sp.seen[o.id]=o.ce+':'+(o.calls||0));say('Suara pengumuman aktif');render()}
+function notify(){const o=S.orders.find(x=>x.id===store.g('oid'));if(o&&o.status==='selesai'&&store.g('said')!==o.id+o.ce){store.s('said',o.id+o.ce);say(`Pesanan atas nama ${o.name} sudah siap. Silakan diambil di counter.`);try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}}}
+function panggil(){
+ const rd=S.orders.filter(o=>o.status==='selesai').sort((a,b)=>a.ce-b.ce),pr=S.orders.filter(o=>o.status==='baru'||o.status==='dimasak').sort((a,b)=>a.at-b.at);
+ return `${sp.on?'<small>🔊 Suara aktif</small>':'<button class="pri" onclick="spOn()">🔊 Aktifkan suara pengumuman</button>'}<h3>Siap diambil</h3>${rd.map(o=>`<div class="card" style="font-size:26px"><b>${E(o.name)}</b> · ${o.type==='ta'?'🛍 Take away':'Meja '+E(o.table)} <small>#${o.no}</small></div>`).join('')||'<p class="mu">Belum ada.</p>'}<h3>Sedang diproses</h3><div>${pr.map(o=>`<span class="chip ${o.status}" style="font-size:18px;margin:3px">${E(o.name)}</span>`).join(' ')||'<small>Tidak ada.</small>'}</div>`}
+/* ===== STAF ===== */
+function staff(){
+ if(!S.me)return `<div class="card"><b>Masuk staf</b> <a class="mu" href="#/" style="float:right">← Menu</a><select id="ls"><option value="_o">Pemilik</option>${S.staff.map(s=>`<option value="${s.id}">${E(s.name)} (${s.role})</option>`).join('')}</select><input id="lp" type="password" inputmode="numeric" placeholder="PIN">${S.set.hasPin?'':'<small>PIN awal pemilik: 1234 (ganti di Pengaturan)</small>'}<button class="pri" onclick="login()">Masuk</button></div>`;
+ const r=S.me.role,T=r==='pemilik'?[['dapur','Dapur'],['antar','Serahkan'],['kasir','Kasir'+badge()],['menu','Menu'],['kinerja','Kinerja'],['set','Pengaturan'],['qr','QR']]:r==='kasir'?[['kasir','Kasir'+badge()],['antar','Serahkan']]:r==='pramusaji'?[['antar','Serahkan']]:[['dapur','Dapur']];
+ if(!T.some(t=>t[0]===S.tab))S.tab=T[0][0];
+ const f={dapur,antar:antarV,kasir,menu:menuA,kinerja:kin,set:setA,qr}[S.tab];
+ return `<div class="noprint"><small>${E(S.me.name)} · ${r} · <a href="#" onclick="S.me=null;store.s('me','');render();return false">Keluar</a> · <a href="#/panggil">Layar panggil</a> · <a href="#/">Menu pembeli</a></small><div class="tabs">${T.map(t=>`<button class="${S.tab===t[0]?'on':''}" onclick="S.tab='${t[0]}';render()">${t[1]}</button>`).join('')}</div></div>`+f()}
+async function login(){const v=$('#ls').value,p=$('#lp').value;try{const j=await rpc({a:'login',id:v,pin:p});store.s('tok',j.tok);S.me={name:j.name,role:j.role}}catch(e){return alert(e.message==='locked'?'Terlalu banyak percobaan, coba lagi 5 menit lagi':'PIN salah')}store.s('me',JSON.stringify(S.me));render()}
+const pic=m=>m.img?`<img class="pic" src="${E(m.img)}" alt="">`:`<span class="em">${E(m.emoji||'🍽️')}</span>`;
+const eta=o=>o.items.reduce((a,i)=>a+i.mins*i.qty,0);
+function sched(x){const k=Math.max(1,+S.set.koki||2),now=Date.now(),fr=Array(k).fill(0),r={};
+ S.orders.filter(o=>o.status==='dimasak').sort((a,b)=>a.cs-b.cs).forEach(o=>{const v=Math.max(0,eta(o)-(now-o.cs)/6e4),j=fr.indexOf(Math.min(...fr));fr[j]+=v;r[o.id]=fr[j]});
+ const q=S.orders.filter(o=>o.status==='baru').sort((a,b)=>a.at-b.at);if(x)q.push(x);
+ q.forEach(o=>{const j=fr.indexOf(Math.min(...fr));fr[j]+=eta(o);r[o.id]=fr[j]});return r}
+const items=o=>o.items.map(i=>`<div>${i.qty}× ${E(i.name)} <small>±${i.mins*i.qty} mnt${i.qty>1?' ('+i.mins+'×'+i.qty+')':''}</small></div>`).join('');
+function dapur(){const l=S.orders.filter(o=>o.status==='baru'||o.status==='dimasak').sort((a,b)=>a.at-b.at);
+ return l.length?l.map(o=>`<div class="card"><div class="hd"><b>#${o.no}</b> ${E(o.name)}${o.type==='ta'?' · <b>🛍 TAKE AWAY</b>':o.table?' · Meja '+E(o.table):''}${o.add?' · ➕ TAMBAHAN':''}<span class="chip ${o.status}">${o.status}</span></div>${items(o)}<small>Estimasi ${eta(o)} mnt${o.cs?' · berjalan '+Math.round((Date.now()-o.cs)/6e4)+' mnt':''}</small><button class="pri" onclick="adv('${o.id}')">${o.status==='baru'?'▶ Mulai masak':'✔ Selesai dimasak'}</button></div>`).join(''):'<p class="mu">Tidak ada antrian.</p>'}
+async function adv(id){const o=S.orders.find(x=>x.id===id);await db.doc('orders/'+id).update(o.status==='baru'?{status:'dimasak',cs:Date.now(),cook:S.me.name}:{status:'selesai',ce:Date.now(),calls:0})}
+function antarV(){const l=S.orders.filter(o=>o.status==='selesai').sort((a,b)=>a.ce-b.ce);
+ return l.length?l.map(o=>`<div class="card"><div class="hd"><b>#${o.no}</b> ${E(o.name)}${o.type==='ta'?' · <b>🛍 TAKE AWAY</b>':' · <b>Meja '+E(o.table)+'</b>'}<span class="chip selesai">siap</span></div>${items(o)}<small>Matang ${Math.round((Date.now()-o.ce)/6e4)} mnt lalu</small><div class="two"><button class="pri" onclick="callO('${o.id}')">🔊 Panggil ulang</button><button class="pri" onclick="dlv('${o.id}')">✔ Sudah diambil</button></div></div>`).join(''):'<p class="mu">Belum ada pesanan siap diambil.</p>'}
+async function callO(id){const o=S.orders.find(x=>x.id===id);await db.doc('orders/'+id).update({calls:(o.calls||0)+1})}
+async function dlv(id){await db.doc('orders/'+id).update({status:'diantar',da:Date.now(),waiter:S.me.name})}
+const badge=()=>{const n=S.orders.filter(o=>o.status==='cek').length;return n?' 🔴'+n:''};
+function payCard(o){const q=S.set.qris,r=S.set.rek;
+ return `<div class="card"><b>Cara bayar</b>${q?`<img src="${E(q)}" alt="QRIS" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:10px">`:''}${r?`<p>Transfer ke: <b>${E(r)}</b></p>`:''}<p>Nominal: <b>${R(o.total)}</b></p>${q||r?`<small>Unggah bukti transfer (opsional)</small><input type="file" accept="image/*" onchange="proofUp(this)"><button class="pri" onclick="paid('${o.id}')">Saya sudah bayar</button><small>Atau bayar tunai langsung di kasir.</small>`:'<small>Bayar tunai di kasir.</small>'}</div>`}
+function proofUp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,420/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.proof=c.toDataURL('image/jpeg',.5);alert('Bukti terlampir')};im.src=r.result};r.readAsDataURL(f)}
+async function paid(id){await db.doc('orders/'+id).update({status:'cek',proof:S.proof||'',ct:Date.now(),rej:0});S.proof=''}
+function cekV(){const l=S.orders.filter(o=>o.status==='cek').sort((a,b)=>a.ct-b.ct);return l.length?`<h3>Konfirmasi transfer (${l.length})</h3>`+l.map(o=>`<div class="card"><div class="hd"><b>#${o.no}</b> ${E(o.name)}${o.type==='ta'?' · 🛍':' · Meja '+E(o.table)}<b style="margin-left:auto">${R(o.total)}</b></div>${items(o)}${o.proof?`<img src="${E(o.proof)}" alt="bukti" style="width:100%;max-width:240px;border-radius:8px;margin-top:6px">`:'<small>Tanpa bukti. Cek mutasi rekening.</small>'}<div class="two"><button class="pri" onclick="cekOk('${o.id}')">✔ Sudah masuk</button><button class="pri" style="background:#b91c1c;border-color:#b91c1c" onclick="cekNo('${o.id}')">✕ Belum masuk</button></div></div>`).join(''):''}
+async function cekOk(id){const o=S.orders.find(x=>x.id===id),pa=Date.now();await db.doc('orders/'+id).update({paid:true,pa,method:'Transfer',cash:o.total,cashier:S.me.name,bill:'B'+pa,status:'baru',proof:''})}
+async function cekNo(id){await db.doc('orders/'+id).update({status:'bayar',proof:'',rej:Date.now()})}
+const lead=t=>(S.joins.find(j=>j.id===String(t))||{}).to||String(t),tl=t=>{const L=lead(t);return 'Meja '+[...new Set([L,...S.joins.filter(j=>j.to===L).map(j=>j.id)])].join(' + ')};
+const mg=os=>{const a=[];os.forEach(o=>o.items.forEach(i=>{const e=a.find(x=>x.name===i.name&&x.price===i.price);e?e.qty+=i.qty:a.push({...i})}));return a},hh=t=>new Date(t).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),sum=os=>os.reduce((a,o)=>a+o.total,0);
+function grp(){const g={};S.orders.filter(o=>!o.paid&&o.status!=='batal'&&o.status!=='cek').forEach(o=>{const k=o.type==='ta'?'ta'+o.id:'t'+lead(o.table);(g[k]=g[k]||{k,ta:o.type==='ta',table:lead(o.table),name:o.name,os:[],at:o.at}).os.push(o)});return Object.values(g).sort((a,b)=>a.at-b.at)}
+function bills(){const m={};S.orders.filter(o=>o.paid&&today(o.pa)).forEach(o=>{const k=o.bill||o.id,b=m[k]||(m[k]={bill:k,os:[],pa:o.pa,method:o.method,cash:o.cash,cashier:o.cashier,type:o.type,table:o.table,name:o.name});b.os.push(o)});return Object.values(m).map(b=>({...b,items:mg(b.os),total:sum(b.os),an:[...new Set(b.os.map(o=>o.name.trim()))].join(', '),table:[...new Set(b.os.map(o=>o.table))].join(' + '),no:b.os.map(o=>o.no).join(',')})).sort((a,b)=>b.pa-a.pa)}
+async function canc(id){if(confirm('Batalkan pesanan?'))await db.doc('orders/'+id).update({status:'batal'})}
+const selOs=G=>G.os.filter(o=>S.sel[o.id]),names=G=>[...new Map(G.os.map(o=>[o.name.trim().toLowerCase(),o.name.trim()])).values()],kbT=G=>'Kembali: '+R(Math.max(0,(+S.ud||0)-sum(selOs(G))));
+function payOpen(k){const G=grp().find(x=>x.k===k);S.pay=k;S.sel={};G.os.forEach(o=>S.sel[o.id]=1);S.ud='';S.mt='Tunai';render()}
+function tg(id){S.sel[id]=S.sel[id]?0:1;render()}
+function selAll(k){const G=grp().find(x=>x.k===k);S.sel={};G.os.forEach(o=>S.sel[o.id]=1);render()}
+function selNm(k,i){const G=grp().find(x=>x.k===k),n=names(G)[i].toLowerCase();S.sel={};G.os.forEach(o=>{if(o.name.trim().toLowerCase()===n)S.sel[o.id]=1});render()}
+function kasir(){
+ const un=grp(),td=bills();
+ return cekV()+`<p>Omzet hari ini: <b>${R(sum(td))}</b> (${td.length} transaksi)</p><h3>Belum dibayar</h3>`+(un.map(G=>`<div class="card"><div class="hd"><b>${G.ta?'🛍 Take away · '+E(G.name):'🍽 '+E(tl(G.table))}</b><span class="chip">${G.os.length} pesanan</span></div>${G.os.map(o=>`<div style="border-top:1px dashed var(--ln);padding-top:4px">${S.pay===G.k&&G.os.length>1?`<input type="checkbox" style="width:auto" ${S.sel[o.id]?'checked':''} onchange="tg('${o.id}')"> `:''}<small>#${o.no} · ${E(o.name)} · <span class="chip ${o.status}">${o.status}</span></small>${o.items.map(i=>`<div>${i.qty}× ${E(i.name)} <span class="mu">${R(i.price*i.qty)}</span></div>`).join('')}${o.status==='bayar'||o.status==='verif'?`<a href="#" class="mu" onclick="canc('${o.id}');return false">Batalkan #${o.no}</a>`:''}</div>`).join('')}<p>Total <b>${R(sum(G.os))}</b>${S.pay===G.k&&G.os.length>1?` · Dipilih <b>${R(sum(selOs(G)))}</b>`:''} · <small>bayar dulu, baru diproses</small></p>${S.pay===G.k?`${G.os.length>1?`<small>Pisah tagihan: pilih per orang atau centang pesanan</small><div class="tabs"><button onclick="selAll('${G.k}')">Semua</button>${names(G).map((n,i)=>`<button onclick="selNm('${G.k}',${i})">${E(n)}</button>`).join('')}</div>`:''}<select id="mt" onchange="S.mt=this.value">${['Tunai','QRIS','Transfer'].map(x=>`<option ${S.mt===x?'selected':''}>${x}</option>`).join('')}</select><input id="ud" type="number" inputmode="numeric" placeholder="Uang diterima" value="${E(S.ud||'')}" oninput="S.ud=this.value;kb()"><b id="kb">${kbT(G)}</b><button class="pri" onclick="pay()">Bayar ${R(sum(selOs(G)))} & cetak struk</button><button style="width:100%;margin-top:6px" onclick="S.pay=null;render()">Batal</button>`:`<button class="pri" onclick="payOpen('${G.k}')">Bayar${G.ta?'':G.os.length>1?' / pisah tagihan':' tagihan meja'}</button>`}</div>`).join('')||'<p class="mu">Semua sudah dibayar.</p>')+`<h3>Transaksi hari ini</h3>`+td.map(b=>`<div class="row"><div class="g"><b>#${E(b.no)}</b> ${b.type==='ta'?'Take away · '+E(b.name):'Meja '+E(b.table)}<small>${b.method} · ${hh(b.pa)} · ${E(b.an)}</small></div><b>${R(b.total)}</b><button onclick="S.rc=bills().find(x=>x.bill==='${b.bill}');render()">Struk</button></div>`).join('')}
+function kb(){const G=grp().find(x=>x.k===S.pay);$('#kb').textContent=kbT(G)}
+async function pay(){const G=grp().find(x=>x.k===S.pay),os=selOs(G),t=sum(os),m=S.mt||'Tunai',u=+S.ud||t;
+ if(!os.length)return alert('Pilih pesanan yang dibayar');
+ if(m==='Tunai'&&u<t)return alert('Uang kurang');
+ const pa=Date.now(),d={paid:true,pa,method:m,cash:u,cashier:S.me.name,bill:'B'+pa};
+ await Promise.all(os.map(o=>db.doc('orders/'+o.id).update(o.status==='bayar'||o.status==='verif'?{...d,status:'baru'}:d)));
+ const ms=tl(G.table).slice(5);if(!G.ta&&os.length===G.os.length)await Promise.all(S.joins.filter(j=>j.to===G.table).map(j=>db.doc('joins/'+j.id).delete()));
+ S.pay=null;S.ud='';S.rc={...d,items:mg(os),total:t,no:os.map(o=>o.no).join(','),type:G.ta?'ta':'dine',table:ms,name:G.name,an:[...new Set(os.map(o=>o.name.trim()))].join(', ')};render()}
+function receipt(o){const tg=new Date(o.pa||o.at).toLocaleString('id-ID');
+ return `<div class="rcp"><div style="text-align:center"><b>${E(S.set.name||'Warung Saya')}</b><br>${tg}<br>Struk #${E(o.no)}<br>${o.type==='ta'?'TAKE AWAY · '+E(o.name):'Dine-in · Meja '+E(o.table)+'<br>a.n. '+E(o.an||o.name)}</div><hr>${o.items.map(i=>`<div class="l"><span>${i.qty}× ${E(i.name)}</span><span>${R(i.price*i.qty)}</span></div>`).join('')}<hr><div class="l"><b>TOTAL</b><b>${R(o.total)}</b></div><div class="l"><span>${E(o.method||'')}</span><span>${R(o.cash||o.total)}</span></div><div class="l"><span>Kembali</span><span>${R(Math.max(0,(o.cash||o.total)-o.total))}</span></div><hr><div style="text-align:center">Terima kasih 🙏<br>Kasir: ${E(o.cashier||'')}</div></div><button class="noprint pri" style="max-width:280px" onclick="window.print()">🖨 Cetak struk</button><button class="noprint" onclick="S.rc=null;render()">Tutup</button>`}
+function kin(){
+ const f=o=>S.per==='semua'||today(o.at),m={},g=n=>m[n]||(m[n]={c:0,t:0,on:0,k:0,r:0,d:0,dt:0});
+ S.orders.filter(f).forEach(o=>{if(o.cook&&o.ce){const a=g(o.cook);a.c++;const d=o.ce-o.cs;a.t+=d;if(d<=eta(o)*6e4)a.on++}if(o.waiter&&o.da){const a=g(o.waiter);a.d++;a.dt+=o.da-o.ce}if(o.paid&&o.cashier){const a=g(o.cashier);a.k++;a.r+=o.total}});
+ const rows=Object.entries(m);
+ return `<div class="tabs"><button class="${S.per==='hari'?'on':''}" onclick="S.per='hari';render()">Hari ini</button><button class="${S.per==='semua'?'on':''}" onclick="S.per='semua';render()">Semua</button></div><div class="wrap"><table><tr><th>Karyawan</th><th>Masak</th><th>Rata² (mnt)</th><th>Tepat waktu</th><th>Transaksi</th><th>Omzet</th><th>Serahkan (rata² mnt)</th></tr>${rows.map(([n,a])=>`<tr><td>${E(n)}<br><small>${(S.staff.find(s=>s.name===n)||{role:'pemilik'}).role}</small></td><td>${a.c}</td><td>${a.c?(a.t/a.c/6e4).toFixed(1):'-'}</td><td>${a.c?Math.round(a.on/a.c*100)+'%':'-'}</td><td>${a.k}</td><td>${R(a.r)}</td><td>${a.d?a.d+' ('+(a.dt/a.d/6e4).toFixed(1)+')':'-'}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">Belum ada data.</td></tr>'}</table></div><small>Tepat waktu = selesai dimasak dalam estimasi menu.</small>`}
+function menuA(){
+ return `<div class="card"><b>Tambah menu</b><div class="two"><input id="a_e" placeholder="Emoji 🍛"><input id="a_c" placeholder="Kategori"></div><input id="a_n" placeholder="Nama menu"><div class="two"><input id="a_p" type="number" placeholder="Harga"><input id="a_m" type="number" placeholder="Estimasi masak (mnt)"></div><button class="pri" onclick="addM()">Tambah</button></div>`+(S.menu.length?'':'<button class="pri" onclick="seed()">Muat menu contoh</button>')+S.menu.map(m=>`<div class="row${m.off?' off':''}">${pic(m)}<div class="g"><b>${E(m.name)}</b><small>${R(m.price)} · ${m.mins} mnt · ${E(m.cat||'')}</small></div><button onclick="imgUp('${m.id}')">📷</button><button onclick="ed('${m.id}')">Ubah</button><button onclick="db.doc('menu/${m.id}').update({off:${!m.off}})">${m.off?'Ada':'Habis'}</button><button onclick="confirm('Hapus?')&&db.doc('menu/${m.id}').delete()">✕</button></div>`).join('')}
+async function addM(){const n=$('#a_n').value.trim();if(!n||!$('#a_p').value)return alert('Isi nama & harga');await db.collection('menu').add({name:n,price:+$('#a_p').value,mins:+$('#a_m').value||10,emoji:$('#a_e').value,cat:$('#a_c').value||'Menu'});render()}
+async function ed(id){const m=S.menu.find(x=>x.id===id),n=prompt('Nama',m.name);if(n===null)return;const p=prompt('Harga',m.price);if(p===null)return;const t=prompt('Estimasi masak (menit)',m.mins);if(t===null)return;const c=prompt('Kategori (mis. Makanan, Minuman)',m.cat||'');if(c===null)return;await db.doc('menu/'+id).update({name:n,price:+p,mins:+t||10,cat:c.trim()||'Menu'})}
+function imgUp(id){const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,160/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);db.doc('menu/'+id).update({img:c.toDataURL('image/jpeg',.7)})};im.src=r.result};r.readAsDataURL(f)};i.click()}
+async function seed(){for(const x of [['🍛','Makanan','Nasi Goreng',18000,8],['🍗','Makanan','Ayam Goreng',22000,12],['🍜','Makanan','Mie Ayam',16000,7],['🧋','Minuman','Es Teh',5000,2],['🥤','Minuman','Es Jeruk',7000,3]])await db.collection('menu').add({emoji:x[0],cat:x[1],name:x[2],price:x[3],mins:x[4]})}
+function setA(){return `<div class="card"><b>Identitas warung</b><input id="sn" placeholder="Nama warung" value="${E(S.set.name||'')}"><div class="hd"><div class="lg" id="lp2">${logo(S.lg??S.set.logo)}</div><input id="sl" placeholder="Emoji logo (mis. 🍜)" value="${E((S.set.logo||'').startsWith('data:')?'':S.set.logo||'')}"></div><input type="file" accept="image/*" onchange="lgUp(this)"><small>Jumlah koki di dapur</small><input id="sk" type="number" min="1" value="${E(S.set.koki||2)}"><input id="sp" placeholder="PIN pemilik baru (kosong = tidak diubah)"><input id="sr" placeholder="Rekening transfer (mis. BCA 1234567890 a.n. Nama)" value="${E(S.set.rek||'')}"><small>Gambar QRIS warung (opsional)</small><input type="file" accept="image/*" onchange="qrUp(this)"><div id="qrp">${(S.qr??S.set.qris)?`<img src="${E(S.qr??S.set.qris)}" alt="QRIS" style="width:140px;border-radius:8px">`:''}</div><button class="pri" onclick="saveS()">Simpan</button></div><div class="card"><b>Karyawan & jobdesk</b><input id="s_n" placeholder="Nama karyawan"><div class="two"><select id="s_r"><option value="kasir">Kasir</option><option value="dapur">Dapur</option><option value="pramusaji">Pramusaji</option></select><input id="s_p" placeholder="PIN"></div><button class="pri" onclick="addS()">Tambah karyawan</button>${S.staff.map(s=>`<div class="row"><div class="g"><b>${E(s.name)}</b><small>${s.role}</small></div><button onclick="confirm('Hapus?')&&db.doc('staff/${s.id}').delete()">✕</button></div>`).join('')}<small>Setiap jobdesk hanya melihat tab-nya: Kasir, Dapur, atau Pramusaji (panggil & serahkan makanan).</small></div>`}
+function lgUp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,96/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.lg=c.toDataURL('image/png');$('#lp2').innerHTML=logo(S.lg)};im.src=r.result};r.readAsDataURL(f)}
+function qrUp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,320/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.qr=c.toDataURL('image/png');$('#qrp').innerHTML='<img src="'+S.qr+'" alt="QRIS" style="width:140px;border-radius:8px">'};im.src=r.result};r.readAsDataURL(f)}
+async function saveS(){await db.doc('settings/main').set({name:$('#sn').value.trim(),logo:S.lg??$('#sl').value.trim(),pin:$('#sp').value.trim(),rek:$('#sr').value.trim(),koki:+$('#sk').value||2,qris:S.qr??S.set.qris??''});S.lg=undefined;S.qr=undefined;alert('Tersimpan')}
+async function addS(){const n=$('#s_n').value.trim(),p=$('#s_p').value.trim();if(!n||!p)return alert('Isi nama & PIN');await db.collection('staff').add({name:n,role:$('#s_r').value,pin:p});render()}
+function qr(){return `<div class="card" style="text-align:center"><b>${S.qta?'QR Take Away (taruh di kasir)':'QR Meja '+E(S.qt)}</b><div id="qr" style="display:flex;justify-content:center;margin:10px"></div><small>Link menu: ${E(S.url)}${S.qta?'?ta=1':'?m='+E(S.qt)}</small><br><small>Link staf: ${E(S.url)}?staff=1<br>Layar panggil: ${E(S.url)}?panggil=1</small><div class="noprint"><div class="tabs"><button class="${S.qta?'':'on'}" onclick="S.qta=0;render()">QR Meja</button><button class="${S.qta?'on':''}" onclick="S.qta=1;render()">QR Take Away</button></div><input placeholder="No. meja (kosongkan untuk umum)" value="${E(S.qt)}" onchange="S.qt=this.value;render()"><input placeholder="Alamat link aplikasi" value="${E(S.url)}" onchange="S.url=this.value;render()"><button class="pri" onclick="window.print()">🖨 Cetak QR</button></div></div>`}
+</script></body></html>
